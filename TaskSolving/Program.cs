@@ -8,12 +8,14 @@ namespace TaskSolving
     {
         static void Main(string[] args)
         {
+            int num = 13;
 
-            System.Net.IPAddress iPAddress = new System.Net.IPAddress(32);
+            if ((num & 0b1) == 0)
+                Console.WriteLine(Convert.ToString(num, 2)); 
+            else
+                Console.WriteLine(num.ToString("x"));
 
-            var res = string.Join(".", iPAddress.ToString().Split(".").Reverse());
 
-            Console.WriteLine(res);
         }
     }
 }
