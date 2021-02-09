@@ -8,7 +8,7 @@ namespace TaskSolving.Test
 {
     public class BinaryConvertionTest
     {
-        [Fact]
+        //[Fact]
         public void SampleTest()
         {
             Assert.Equal("10", TaskForBinary.EvensAndOdds(2));

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
 using TaskSolving.BinaryConvertion;
+using TaskSolving.Other;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TaskSolving
 {
@@ -8,14 +11,12 @@ namespace TaskSolving
     {
         static void Main(string[] args)
         {
-            int num = 13;
-
-            if ((num & 0b1) == 0)
-                Console.WriteLine(Convert.ToString(num, 2)); 
-            else
-                Console.WriteLine(num.ToString("x"));
 
 
+            Console.WriteLine(Correct("52:01:01"));
         }
+
+
+ 
     }
 }

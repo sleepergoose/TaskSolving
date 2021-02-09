@@ -9,8 +9,8 @@ namespace TaskSolving.Test
 {
     public class QueueForBillsTest
     {
-        [Theory]
-        [ClassData(typeof(ThereIsChangeDataClass))]
+        //[Theory]
+        //[ClassData(typeof(ThereIsChangeDataClass))]
         public void ThereIsChange(int[] array)
         {
             // arrange
