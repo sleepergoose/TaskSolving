@@ -4,6 +4,7 @@ using TaskSolving.BinaryConvertion;
 using TaskSolving.Other;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace TaskSolving
 {
@@ -11,7 +12,21 @@ namespace TaskSolving
     {
         static void Main(string[] args)
         {
-            int number = 209917;
+  
+            Console.WriteLine("");
+        }
+
+
+
+
+
+    }
+}
+
+
+/* 
+ 
+   int number = 209917;
 
             var arr = number.ToString().ToCharArray();
 
@@ -43,9 +58,4 @@ namespace TaskSolving
 
             Console.WriteLine($"number: {number}");
             Console.WriteLine($"res: {string.Join("|", res)}");
-        }
-
-
- 
-    }
-}
+ */
