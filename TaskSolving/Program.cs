@@ -2,9 +2,14 @@
 using System.Linq;
 using TaskSolving.BinaryConvertion;
 using TaskSolving.Other;
-using System.Text;
+using TaskSolving.NumericalMiracles;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+
+
+
+
 
 namespace TaskSolving
 {
@@ -12,13 +17,63 @@ namespace TaskSolving
     {
         static void Main(string[] args)
         {
-  
-            Console.WriteLine("");
+            // PascalsTriangle.GetSum(7, 0);
+
+            //BinaryTree bt = new BinaryTree(21);
+
+            //Console.WriteLine(BinaryTree.diagonal(17500, 201));
+            Console.WriteLine(diagonal(17500, 201));
+            //Console.WriteLine(BinaryTree.diagonal(20, 5));
+
+            //Console.WriteLine(BinaryTree.diagonal(7, 0));
+            //Console.WriteLine(BinaryTree.diagonal(7, 1));
+            //Console.WriteLine(BinaryTree.diagonal(7, 2));
+            //Console.WriteLine(BinaryTree.diagonal(7, 3));
+            //Console.WriteLine(BinaryTree.diagonal(7, 4));
+            //Console.WriteLine(BinaryTree.diagonal(7, 5));
+            //Console.WriteLine(BinaryTree.diagonal(7, 6));
+            //Console.WriteLine(BinaryTree.diagonal(7, 7));
+        }
+        public static BigInteger diagonal(int n, int p)
+        {
+            System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
+            s.Start();
+            n++;
+            BigInteger sum = 0;
+            for (BigInteger i = p + 1, k = 1; i <= n; i++)
+            {
+                sum += k;
+                k = k * i / (i - p);
+            }
+            s.Stop();
+            Console.WriteLine("timer: " + s.ElapsedMilliseconds);
+            return sum;
         }
 
 
 
 
+    }
+
+    public class UrbanDictionary
+    {
+        private List<string> dict;
+        public UrbanDictionary() => dict = new List<string>();
+
+        public void AddWord(string word)
+        {
+            if (dict.Contains(word) == false)
+                dict.Add(word);
+        }
+
+        public bool Search(string word)
+        {
+            var res = dict.Select(p => p).Where(p => p.Contains(word.Trim('.')));
+            if (res.Count() != 0)
+                return true;
+            else
+                return false;
+        }
 
     }
 }
