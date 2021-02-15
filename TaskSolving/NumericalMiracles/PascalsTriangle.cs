@@ -110,5 +110,20 @@ namespace TaskSolving.NumericalMiracles
             return HalfProduct(2, n);
         }
 
+        public static BigInteger diagonalNotMySolvingButFromCodewars(int n, int p)
+        {
+            System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
+            s.Start();
+            n++;
+            BigInteger sum = 0;
+            for (BigInteger i = p + 1, k = 1; i <= n; i++)
+            {
+                sum += k;
+                k = k * i / (i - p);
+            }
+            s.Stop();
+            Console.WriteLine("timer: " + s.ElapsedMilliseconds);
+            return sum;
+        }
     }
 }
