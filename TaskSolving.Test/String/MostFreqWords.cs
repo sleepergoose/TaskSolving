@@ -7,7 +7,7 @@ namespace TaskSolving.Test.String
 {
     public class MostFreqWords
     {
-        [Fact]
+        // [Fact]
         public void SampleTests()
         {
             Assert.Equal(new List<string> { "e", "d", "a" }, Program.Top3("a a a  b  c c  d d d d  e e e e e"));
