@@ -17,9 +17,9 @@ namespace TaskSolving.BinaryConvertion
             return $"{first}.{second}.{third}.{fourth}";
 
             // But there is another way:
-            System.Net.IPAddress iPAddress = new System.Net.IPAddress(32);
+           // System.Net.IPAddress iPAddress = new System.Net.IPAddress(32);
 
-            return string.Join(".", iPAddress.ToString().Split(".").Reverse());
+          //  return string.Join(".", iPAddress.ToString().Split(".").Reverse());
 
         }
 

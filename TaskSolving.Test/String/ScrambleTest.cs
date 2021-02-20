@@ -13,7 +13,7 @@ namespace TaskSolving.Test.String
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
+        //[Fact]
         public static void test1()
         {
             testing(Scramblies.Scramble("rkqodlw", "world"), true);

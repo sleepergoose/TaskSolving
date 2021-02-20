@@ -23,7 +23,14 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-            string text = string.Join("\n", new string[]{"I?n a village? //'/of La Mancha, the name        of which I have no desire to call to",
+
+
+        }
+
+        public static List<string> Top3(string text)
+        {
+
+            string text2 = string.Join("\n", new string[]{"I?n a village? //'/of La Mancha, the name        of which I have no desire to call to",
                   "mind, there lived not long since one of those  gentlemen  that keep    ///a////   lance",
                   "in the lance-rack, an old buckler,    '''a //lean hack, and a greyhound for",
                   "coursing....  An oll'a ///...///of   ''''  rather more beef than    mutton, a salad on most",
@@ -35,10 +42,6 @@ namespace TaskSolving
 
             // string.Concat(p.ToCharArray().Select())
             Console.WriteLine("");
-        }
-
-        public static List<string> Top3(string text)
-        {
 
             var res = text.ToLower()
                     .Split(" ")
