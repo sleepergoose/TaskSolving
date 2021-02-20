@@ -4,8 +4,9 @@ using System.Linq;
 //using TaskSolving.Other;
 //using TaskSolving.NumericalMiracles;
 using TaskSolving.String;
+using TaskSolving.Linq;
 //using TaskSolving.Algorithms;
-//using System.Numerics;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 //using System.Net;
@@ -23,7 +24,8 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-
+            Dinglemouse dinglemouse = new Dinglemouse(" Ivan ", "  Pavel   ");
+            Write(dinglemouse.FullName);
 
         }
 

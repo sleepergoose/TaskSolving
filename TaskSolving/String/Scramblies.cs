@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TaskSolving.String
 {
@@ -26,6 +27,27 @@ namespace TaskSolving.String
                     dict.Add(str2[i], 1);
             }
             return false;
+        }
+    }
+
+
+    public class Dinglemouse
+    {
+        private string firstName;
+        private string lastName;
+
+        public string FullName
+        {
+            get
+            {
+                return (firstName + " " + lastName).Trim();
+            }
+        }
+
+        public Dinglemouse(string firstName, string lastName)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
         }
     }
 }

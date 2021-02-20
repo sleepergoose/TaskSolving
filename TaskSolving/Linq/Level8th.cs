@@ -73,5 +73,26 @@ namespace TaskSolving.Linq
             } 
             return new long[] { number, counter };
         }
+
+        public static string TwoToOne(string s1, string s2)
+        {
+            // the most efficient way
+            return string.Concat((s1 + s2).Distinct().OrderBy(p => p));
+
+            return string.Concat(s1.ToCharArray().Union(s2.ToCharArray()).Distinct().OrderBy(p => p));
+        }
+
+
+        public static IEnumerable<int> PaintLetterBoxes(int start, int end)
+        {
+            var result = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            string.Concat(Enumerable.Range(start, end - start + 1)
+                .Select(p => p.ToString()))
+                .GroupBy(p => p)
+                .OrderBy(p => p.Key)
+                .ToList().ForEach(p => result[p.Key - '0'] = p.Count());
+            return result;
+        }
+
     }
 }
