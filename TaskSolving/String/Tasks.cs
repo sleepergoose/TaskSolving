@@ -50,5 +50,99 @@ namespace TaskSolving.String
             n.ToString().ToList().ForEach(ch => res += Math.Pow(ch - '0', 2));
             return int.Parse(res);
         }
+
+        public static string Rot13(string message)
+        {
+            string res = "";
+            for (int i = 0; i < message.Length; i++)
+            {
+                if (char.IsLetter(message[i]))
+                {
+                    if ((message[i] > 64 && message[i] < 78) || (message[i] > 96 && message[i] < 110))
+                        res += (char)(message[i] + 13);
+                    else
+                        res += (char)(message[i] - 13);
+                }
+                else
+                {
+                    res += message[i];
+                }
+            }
+            return res;
+        }
+
+
+        public static string Decode(string morseCode)
+        {
+            return string.Join(" ", morseCode.Split("   ").Select(p => string.Concat(p.Split()
+                .Select(c => MorseTo[c]))));
+        }
+
+        static Dictionary<string, string> ToMorse = new Dictionary<string, string>
+        {
+            ["A"] = ".-",
+            ["B"] = "−...",
+            ["C"] = "−.−.",
+            ["D"] = "-..",
+            ["E"] = ".",
+            ["F"] = "..-.",
+            ["G"] = "--.",
+            ["H"] = "....",
+            ["I"] = "..",
+            ["J"] = ".---",
+            ["K"] = "-.-",
+            ["L"] = ".-..",
+            ["M"] = "--",
+            ["N"] = "-.",
+            ["O"] = "---",
+            ["P"] = ".--.",
+            ["Q"] = "--.-",
+            ["R"] = ".-.",
+            ["S"] = "...",
+            ["T"] = "-",
+            ["U"] = "..-",
+            ["V"] = "...-",
+            ["W"] = ".--",
+            ["X"] = "-..-",
+            ["Y"] = "-.--",
+            ["Z"] = "--.."
+        };
+        static Dictionary<string, string> MorseTo = new Dictionary<string, string>
+        {
+            [".-"] = "A",
+            ["−..."] = "B",
+            ["−.−."] = "C",
+            ["-.."] = "D",
+            ["."] = "E",
+            ["..-."] = "F",
+            ["--."] = "G",
+            ["...."] = "H",
+            [".."] = "I",
+            [".---"] = "J",
+            ["-.-"] = "K",
+            [".-.."] = "L",
+            ["--"] = "M",
+            ["-."] = "N",
+            ["---"] = "O",
+            [".--."] = "P",
+            ["--.-"] = "Q",
+            [".-."] = "R",
+            ["..."] = "S",
+            ["-"] = "T",
+            ["..-"] = "U",
+            ["...-"] = "V",
+            [".--"] = "W",
+            ["-..-"] = "X",
+            ["-.--"] = "Y",
+            ["--.."] = "Z"
+        };
+
+
+        public static int DescendingOrder(int num) =>
+            int.Parse(string.Concat(num.ToString().OrderByDescending(p => p)));
+
+        public static string OddOrEven(int[] array) =>
+            (array.Sum() & 0b1) == 1 ? "odd" : "even";
+
     }
 }

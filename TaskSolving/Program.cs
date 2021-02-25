@@ -24,9 +24,21 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
+            int r = 42145;
 
-;
+            Write(OddOrEven);
+
         }
+
+
+        public static string OddOrEven(int[] array) =>
+            (array.Sum() & 0b1) == 1 ? "odd" : "even";
+        
+
+
+
+
+
 
 
 
