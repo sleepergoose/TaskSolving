@@ -144,5 +144,22 @@ namespace TaskSolving.String
         public static string OddOrEven(int[] array) =>
             (array.Sum() & 0b1) == 1 ? "odd" : "even";
 
+        public static string boolToWord(bool word) => word ? "Yes" : "No";
+        public static IEnumerable<string> GooseFilter(IEnumerable<string> birds)
+        {
+            string[] geese = new string[] { "African", "Roman Tufted", "Toulouse", "Pilgrim", "Steinbacher" };
+
+            return birds.Except(geese);
+        }
+
+        public static string ToCamelCase(string str)
+        {
+            // The Best
+            return Regex.Replace(str, @"[_-](\w)", m => m.Groups[1].Value.ToUpper());
+
+            string temp = Regex.Replace(str, @"[_-]\w", ch => ch.ToString().ToUpper());
+            return Regex.Replace(temp, @"[_-]", "");
+        }
+
     }
 }
