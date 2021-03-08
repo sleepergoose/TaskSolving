@@ -9,6 +9,7 @@ using TaskSolving.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text;
 //using System.Net;
 //using System.Collections;
 
@@ -24,14 +25,30 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-            string res1 = "the_stealth_warrior";
-            string res2 = "The-Stealth-Warrior";
+            //var arr1 = new[] { 5, 4, 3, 2, 1 };
+            //var arr2 = new[] { 1, 2, 3, 1, 2 };
+            //var arr3 = new[] { 1, 2, 3, -4, 0 };
 
+            //var res = FirstNSmallest(new[] { 1, 2, 3, 4, 5 }, 3);
+            //res = FirstNSmallest(new[] { 5, 4, 3, 2, 1 }, 3);
+            //res = FirstNSmallest(new[] { 1, 2, 3, 1, 2 }, 3);
 
+            // Create and display the value of two GUIDs.
+            GenMultTable(3);
         }
 
 
 
+
+
+
+
+
+        public static int[] FirstNSmallest(int[] arr, int n)
+        {
+            
+            return new int[] { };
+        }
 
 
 

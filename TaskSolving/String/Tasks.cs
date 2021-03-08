@@ -161,5 +161,17 @@ namespace TaskSolving.String
             return Regex.Replace(temp, @"[_-]", "");
         }
 
+
+        public static string CreatePassword(int length)
+        {
+            string members = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            StringBuilder result = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                result.Append(members[random.Next(0, members.Length)]);
+            }
+            return result.ToString();
+        }
     }
 }
