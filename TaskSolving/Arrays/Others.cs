@@ -59,5 +59,19 @@ namespace TaskSolving.Arrays
             }
             return table;
         }
+
+
+        // Moving Zeros To The End
+        public static int[] MoveZeroes2(int[] arr)
+        {
+            int zeros = arr.Count(p => p == 0);
+            var result = arr.Where(p => p != 0).ToList();
+            for (int i = 0; i < zeros; i++)
+                result.Add(0);
+            return result.ToArray();
+            // from Codewars' community
+            return arr.OrderBy(x => x == 0).ToArray();
+            return arr.Where(x => x != 0).Concat(arr.Where(x => x == 0)).ToArray();
+        }
     }
 }
