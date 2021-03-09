@@ -173,5 +173,31 @@ namespace TaskSolving.String
             }
             return result.ToString();
         }
+
+
+        // var res = ValidParentheses("(())((()())())");
+        // res = ValidParentheses("(ff)( )(dd )(  dd)( d()d)d");
+        public static bool ValidParentheses(string input)
+        {
+            if (input.Contains('(') == false && input.Contains(')') == false)
+                return false;
+
+            Stack<char> stack = new Stack<char>(100);
+            try
+            {
+                foreach (var ch in input)
+                {
+                    if (ch == '(')
+                        stack.Push(ch);
+                    else if (ch == ')')
+                        stack.Pop();
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            return stack.Count == 0 ? true : false;
+        }
     }
 }
