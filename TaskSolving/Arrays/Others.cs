@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TaskSolving.Arrays
@@ -72,6 +73,20 @@ namespace TaskSolving.Arrays
             // from Codewars' community
             return arr.OrderBy(x => x == 0).ToArray();
             return arr.Where(x => x != 0).Concat(arr.Where(x => x == 0)).ToArray();
+        }
+
+        public static int[] PartsSums(int[] ls)
+        {
+            // var res = Enumerable.Range(0, ls.Length + 1).Select(p => ls[p..ls.Length].Sum()).ToArray();
+            int sum = ls.Sum();
+            var res = new List<int>();
+            res.Add(sum);
+            foreach (var item in ls)
+            {
+                sum -= item;
+                res.Add(sum);
+            }
+            return res.ToArray();
         }
     }
 }

@@ -33,9 +33,9 @@ namespace TaskSolving
             //res = FirstNSmallest(new[] { 5, 4, 3, 2, 1 }, 3);
             //res = FirstNSmallest(new[] { 1, 2, 3, 1, 2 }, 3);
 
-
-
         }
+
+
 
 
 

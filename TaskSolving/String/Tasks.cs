@@ -199,5 +199,17 @@ namespace TaskSolving.String
             }
             return stack.Count == 0 ? true : false;
         }
+
+
+        public static string Switcher(string[] x)
+        {
+            string array = " ?!zyxwvutsrqponmlkjihgfedcba";
+            string result = "";
+            for (int i = 0; i < x.Length; i++)
+            {
+                result += array[int.Parse(x[i])];
+            }
+            return result;
+        }
     }
 }
