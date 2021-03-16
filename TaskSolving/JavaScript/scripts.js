@@ -206,3 +206,43 @@ var encryptThis = function (text) {
     return res.join(" ");
 }
 
+
+// IP Validation
+
+function isValidIP(str) {
+    var patern = /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/gi;
+    if (!patern.test(str)) {
+        return false;
+    }
+    var array = str.Split(".");
+    for (const item of array) {
+        var temp = parseInt(item);
+        if ((item.length > 1 && item.charAt(0) === "0") || isNaN(temp) || item > 255 || item < 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// return /^(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}$/.test(str);
+// const net = require('net');
+// const isValidIP = (s) => net.isIP(s);
+
+
+
+// "Format words into a sentence" - string array filter 
+function formatWords(words) {
+    var words = words.filter(p => p !== '' && p !== ' ');
+    if (worsd.length == 0) {
+        return false;
+    }
+    var res = words.slice(0, words.length - 1).join(", ");
+    return words.length > 1 ? res + " and " + words[words.length - 1] : words[0];
+}
+
+// from community 
+function formatWords(words) {
+    if (!words) return "";
+    return words.filter(function (a) { return a !== '' }).join(', ').replace(/(, )+(\S+)$/, ' and $2');
+}
+let formatWords = (a) => !a ? '' : a.filter(w => w).join(', ').replace(/, ([^ ]*)$/, " and $1")

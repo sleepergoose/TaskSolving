@@ -211,5 +211,99 @@ namespace TaskSolving.String
             }
             return result;
         }
+
+
+
+        /* ======= */
+        public static string FormatTime(int hour)
+        {
+            if (hour > 9999 || hour < 100)
+                throw new Exception();
+            string temp = hour.ToString();
+            return temp.Insert(temp.Length - 2, ":");
+        }
+        // Solving from community:
+        public static string FormatTimeFromComunity(int hour)
+        {
+            if (hour < 100 || hour > 9999)
+            {
+                throw new ArgumentException();
+            }
+            return $"{hour:##:##}";
+        }
+        /* ======= */
+
+
+
+        public static string[] Solution(string str)
+        {
+            List<string> result = new List<string>();
+            if (str.Length % 2 != 0)
+                str = str + "_";
+            for (int i = 0; i < str.Length / 2; i++)
+                result.Add(str.Substring(i * 2, 2));
+            return result.ToArray();
+        }
+
+
+        // UpperCase every words in 'title' excluding words in 'minorWords' and the first word
+        public static string TitleCase(string title, string minorWords = "")
+        {
+            if (title == "")
+                return "";
+            if (minorWords == null)
+                minorWords = "";
+            var minors = minorWords.ToLower().Split(" ");
+            var titles = title.ToLower().Split(" ").Select((word, index) => {
+                if (minors.Contains(word) == false)
+                    word = char.ToUpper(word[0]) + word[1..];
+                else if (minors.Contains(word) == true && index == 0)
+                    word = char.ToUpper(word[0]) + word[1..];
+                return word;
+            });
+            return string.Join(" ", titles);
+        }
+
+
+
+        /* ======= */
+        // Break camelCase
+        public static string BreakCamelCase(string str)
+        {
+            //var indexes = str.Select((p, index) => new { p, index }).Where(tuple => char.IsUpper(tuple.p));
+            StringBuilder result = new StringBuilder();
+            foreach (char ch in str)
+            {
+                if (char.IsUpper(ch) == true)
+                    result.Append(" " + ch);
+                else
+                    result.Append(ch);
+            }
+            return result.ToString();
+        }
+        // from Community
+        public static string BreakCamelCase1(string str) =>
+              new Regex("([A-Z])").Replace(str, " $1");
+        public static string BreakCamelCase2(string str)
+        {
+            return string.Concat(str.Select(c => Char.IsUpper(c) ? " " + c : c.ToString()));
+        }
+        /* ======= */
+
+
+
+        // RGB To Hex Conversion
+        public static string Rgb(int r, int g, int b)
+        {
+            int R = r > 255 ? 255 : r < 0 ? 0 : r;
+            int G = g > 255 ? 255 : g < 0 ? 0 : g;
+            int B = b > 255 ? 255 : b < 0 ? 0 : b;
+            return R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
+            // Solving from community:
+            // return Math.Clamp(r, 0, 255).ToString("X2") + Math.Clamp(g, 0, 255).ToString("X2") + Math.Clamp(b, 0, 255).ToString("X2");
+            // return $"{(r > 255 ? 255 : r < 0 ? 0 : r):X2}" +
+            //   $"{(g > 255 ? 255 : g < 0 ? 0 : g):X2}" +
+            //   $"{(b > 255 ? 255 : b < 0 ? 0 : b):X2}";
+        }
     }
 }

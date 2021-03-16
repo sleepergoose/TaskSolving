@@ -88,5 +88,38 @@ namespace TaskSolving.Arrays
             }
             return res.ToArray();
         }
+
+        // Make the Deadfish swim
+        public static int[] Parse(string data)
+        {
+            int number = 0;
+            List<int> result = new List<int>();
+            foreach (char item in data)
+            {
+                switch (item)
+                {
+                    case 'i':
+                        number++;
+                        break;
+                    case 'd':
+                        number--;
+                        break;
+                    case 's':
+                        number = (int)Math.Pow(number, 2);
+                        break;
+                    case 'o':
+                        result.Add(number);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return result.ToArray();
+        }
+
+
+        // Mean Square Error
+        public static double Solution(int[] firstArray, int[] secondArray) =>
+            firstArray.Select((p, index) => Math.Pow(p - secondArray[index], 2)).Average();
     }
 }

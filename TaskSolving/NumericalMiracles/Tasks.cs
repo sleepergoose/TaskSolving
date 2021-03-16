@@ -25,5 +25,37 @@ namespace TaskSolving.NumericalMiracles
         public static bool CommonOne(int a, int b) =>
             ((a & b) & ((a & b) - 1)) != 0;
 
+
+        // Round to 0.5 step (4.3 to 4.5, 4.6 to 4.5, 4.8 to 5)
+        public static double Solution(double n)
+        {
+            int integer = (int)n;
+            double difference = n - integer;
+            if (difference < 0.25)
+                return integer;
+            else if (difference >= 0.25 && difference < 0.75)
+                return integer + 0.5;
+            else
+                return integer + 1;
+        }
+
+
+        // Lazy Repeater
+        public static Func<char> makeLooper(string str)
+        {
+            int c = 0;
+            return () => str[c++ % str.Length];
+
+            int counter = 0;
+            return () => {
+                if (counter < str.Length)
+                    return str[counter++];
+                else
+                {
+                    counter = 0;
+                    return str[counter++];
+                }
+            };
+        }
     }
 }
