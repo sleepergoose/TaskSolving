@@ -51,6 +51,8 @@ namespace TaskSolving.String
             return int.Parse(res);
         }
 
+
+        /* ===ROT13 ===  */
         public static string Rot13(string message)
         {
             string res = "";
@@ -71,6 +73,34 @@ namespace TaskSolving.String
             return res;
         }
 
+        public static string Rot13_2(string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (char.IsLetter(input[i]))
+                {
+                    if ((input[i] > 64 && input[i] < 78) || (input[i] > 96 && input[i] < 110))
+                        sb.Append((char)(input[i] + 13));
+                    else
+                        sb.Append((char)(input[i] - 13));
+                }
+                else
+                {
+                    sb.Append(input[i]);
+                }
+            }
+            return sb.ToString();
+        }
+        /* From community:
+           public static string Rot13(string input) =>
+                Regex.Replace(input, "[a-zA-Z]", new MatchEvaluator(c => ((char)(c.Value[0] + (Char.ToLower(c.Value[0]) >= 'n' ? -13 : 13))).ToString()));
+
+           return new string(input.Select(x =>
+                char.IsLetter(x) ? (char)((int)x + (char.ToUpper(x) < 'N' ? 13 : -13)) : x).ToArray());  
+        */
+
+        /* =====  */
 
         public static string Decode(string morseCode)
         {
@@ -305,5 +335,59 @@ namespace TaskSolving.String
             //   $"{(g > 255 ? 255 : g < 0 ? 0 : g):X2}" +
             //   $"{(b > 255 ? 255 : b < 0 ? 0 : b):X2}";
         }
+
+
+        // Where my anagrams at?
+        // SequenceEqual
+        public static List<string> Anagrams(string word, List<string> words)
+        {
+            return words?.Where(w => w.OrderBy(p => p).SequenceEqual(word.OrderBy(p => p))).ToList();
+            // my old: words.Where(w => string.Concat(w.OrderBy(p => p)) == string.Concat(word.OrderBy(p => p))).ToList();
+            // from community:
+            // return words?.Where(w => w.OrderBy(c => c).SequenceEqual(word.OrderBy(c => c))).ToList();
+        }
+
+
+
+
+        public static string PigIt(string str)
+        {
+            // from Community:
+            // return Regex.Replace(str, @"((\S)(\S+))", "$3$2ay");
+            // return string.Join(" ", str.Split(' ').Select(w => w.Any(char.IsPunctuation) ? w : w.Substring(1) + w[0] + "ay"));
+            var array = str.Split(" ").Select(word => {
+                if (Regex.IsMatch(word, "[a-z]", RegexOptions.IgnoreCase))
+                    return word[1..word.Length] + word[0] + "ay";
+                else
+                    return word;
+            });
+            return string.Join(" ", array);
+            /*
+            List<string> list = new List<string>();
+            var array = str.Split(" ");
+            string word = "";
+            foreach (string item in array)
+            {
+                if (item.Length > 1)
+                    word = item[1..item.Length] + item[0] + "ay";
+                else
+                    word = item;
+                list.Add(word);
+            }
+            return string.Join(" ", list);
+            */
+        }
+
+        // Human Readable Time
+        static string Readable(int seconds)
+        {
+            int h = seconds / 3600;
+            int m = (seconds - h * 3600) / 60;
+            int s = seconds - h * 3600 - m * 60;
+            return $"{h:00}:{m:00}:{s:00}";
+        }
+        // return string.Format("{0:d2}:{1:d2}:{2:d2}", seconds / 3600, seconds / 60 % 60, seconds % 60);
+        // var t = TimeSpan.FromSeconds(seconds);
+        // return string.Format("{0:00}:{1:00}:{2:00}", (int) t.TotalHours, t.Minutes, t.Seconds);
     }
 }

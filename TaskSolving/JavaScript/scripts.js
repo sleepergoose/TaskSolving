@@ -229,7 +229,7 @@ function isValidIP(str) {
 // const isValidIP = (s) => net.isIP(s);
 
 
-
+///////////////////////////
 // "Format words into a sentence" - string array filter 
 function formatWords(words) {
     var words = words.filter(p => p !== '' && p !== ' ');
@@ -246,3 +246,21 @@ function formatWords(words) {
     return words.filter(function (a) { return a !== '' }).join(', ').replace(/(, )+(\S+)$/, ' and $2');
 }
 let formatWords = (a) => !a ? '' : a.filter(w => w).join(', ').replace(/, ([^ ]*)$/, " and $1")
+///////////////////////////
+
+
+function pigIt(str) {
+    var words = str.split(" ");
+    var list = [];
+    for (const word of words) {
+        if (word.match(/[a-z]/i)) {
+            list.push(word.slice(1, word.length) + word.charAt(0) + "ay");
+        }
+        else {
+            list.push(word);
+        }
+    }
+    return list.join(" ");
+}
+
+///////////////////////////
