@@ -61,13 +61,8 @@ namespace TaskSolving.NumericalMiracles
 
         public static BigInteger diagonal(int n, int p)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
             BigInteger res = new BigInteger(0);
-
             res = GetFactor(n + 1, p + 1);
-            stopwatch.Stop();
-            Console.WriteLine($"Time: {stopwatch.ElapsedMilliseconds}");
             return res;
         }
 
@@ -112,8 +107,6 @@ namespace TaskSolving.NumericalMiracles
 
         public static BigInteger diagonalNotMySolvingButFromCodewars(int n, int p)
         {
-            System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
-            s.Start();
             n++;
             BigInteger sum = 0;
             for (BigInteger i = p + 1, k = 1; i <= n; i++)
@@ -121,8 +114,6 @@ namespace TaskSolving.NumericalMiracles
                 sum += k;
                 k = k * i / (i - p);
             }
-            s.Stop();
-            Console.WriteLine("timer: " + s.ElapsedMilliseconds);
             return sum;
         }
     }

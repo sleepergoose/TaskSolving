@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -87,26 +88,58 @@ namespace TaskSolving.NumericalMiracles
 
 
 
-        /* Matrix Multiple */
-        public static int[,] MatrixMultiplication(int[,] a, int[,] b)
+         /* Check for PRIME */
+        public static bool IsPrime(int n)
         {
-            int rows = a.GetUpperBound(0) + 1;
-            int cols = a.Length / rows;
-            int[,] result = new int[rows, cols];
-
-            for (int i = 0; i < rows; i++)
+            if (n != 2 && (n & 0b1) != 1 || n < 2)
+                return false;
+            for (int i = 3, lim = (int)Math.Sqrt(n); i <= lim; i++)
             {
-                for (int j = 0; j < cols; j++)
-                {
-                    var temp = 0;
-                    for (int k = 0; k < cols; k++)
-                    {
-                        temp += a[i, k] * b[k, j];
-                    }
-                    result[i, j] = temp;
-                }
+                if (n % i == 0)
+                    return false;
             }
-            return result;
+            return true;
+        }
+
+
+
+        // Number Zoo Patrol
+        // Recovery missed value in the sequences
+        public static int FindNumber(int[] array)
+        {
+            if (array != null && array.Count() != 0)
+            {
+                Array.Sort(array);
+                for (int i = 1; i < array.Length; i++)
+                {
+                    if (array[i] - array[i - 1] != 1)
+                        return array[i - 1] + 1;
+                }
+                return array[0] == 1 ? array[array.Length - 1] + 1 : 1;
+            }
+            else
+                return 1;
+        }
+
+
+
+        // Twisted Sum
+        // Sum digit, not a numbers
+        public static long Solution(long n)
+        {
+            return Enumerable.Range(1, (int)n).Select(p => {
+                if (p < 10)
+                    return p;
+                else
+                    return p.ToString().Select(k => int.Parse(k.ToString())).Aggregate((x, y) => x + y);
+            }).Sum();
+        }
+        public static long SolutionFromCommunity(long n)
+        {
+            var summe = 0;
+            for (int i = 1; i <= n; i++)
+                summe += i.ToString().Sum(CharUnicodeInfo.GetDigitValue);
+            return summe;
         }
     }
 }

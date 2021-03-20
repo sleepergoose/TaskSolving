@@ -389,5 +389,60 @@ namespace TaskSolving.String
         // return string.Format("{0:d2}:{1:d2}:{2:d2}", seconds / 3600, seconds / 60 % 60, seconds % 60);
         // var t = TimeSpan.FromSeconds(seconds);
         // return string.Format("{0:00}:{1:00}:{2:00}", (int) t.TotalHours, t.Minutes, t.Seconds);
+
+
+        // Numbers seted bit in binary view of integer
+        public static int CountBits(int n)
+        {
+            return Convert.ToString(n, 2).Where(p => p == '1').Count();
+        }
+
+        // Group Text Representation of Integer By Commas
+        public static string GroupByCommas(int n)
+        {
+            return $"{n:###,###,###,###}";
+            // return String.Format("{0:n0}", n);
+            // return n.ToString("N0");
+            // return n.ToString("#,#");
+        }
+
+        // Christmas Tree
+        public static string ChristmasTree(int height)
+        {
+            List<string> list = new List<string>();
+            for (int i = 0; i < height; i++)
+            {
+                int count = 2 * i + 1;
+                int max = 2 * (height - 1) + 1;
+                int sider = (max - count) / 2;
+                string unit = string.Concat(Enumerable.Range(1, count).Select(p => "*"));
+                string res = unit.PadLeft(sider + count, ' ').PadRight(max, ' ');
+
+                list.Add(res);
+            }
+            return string.Join("\n", list);
+        }
+
+
+        // Valid brackets, parentheses
+        public static bool validBraces(string braces)
+        {
+            Stack<char> s = new Stack<char>();
+            foreach (var c in braces)
+            {
+                if ("([{".Contains(c) == true)
+                    s.Push(c);
+                else if (")]}".Contains(c) == true)
+                {
+                    char value = '*';
+                    bool pop = s.TryPop(out value);
+                    if (pop == false)
+                        return false;
+                    if (value != c - 2 && value != c - 1)
+                        return false;
+                }
+            }
+            return s.Count() == 0 ? true : false;
+        }
     }
 }

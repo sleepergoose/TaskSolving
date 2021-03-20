@@ -264,3 +264,54 @@ function pigIt(str) {
 }
 
 ///////////////////////////
+// n-th Fibonachi element 
+function Fibonachi(n) {
+    var psi = (1 - Math.sqrt(5)) / 2;
+    var fi = (1 + Math.sqrt(5)) / 2;
+    var fib = (fi ** (n - 1) - psi ** (n - 1)) / Math.sqrt(5);
+    return Math.floor(fib);
+}
+///////////////////////////
+
+// Sequence: 0 50 150 300 500 750 1050
+function getScore(n) {
+    return 50 * n * (n + 1) / 2;
+}
+///////////////////////////
+
+
+
+
+// Calculate Hypotenuse of Right-angled Triangle
+// It's a useful using of REGEX
+function calculateHypotenuse(a, b) {
+    if (!/^[0-9]+/gi.test(a.toString()) || !/^[0-9]+/gi.test(b.toString())) {
+        throw "error";
+    }
+    return Math.sqrt(a ** 2 + b ** 2).toFixed(3);
+}
+///////////////////////////
+
+
+// Calculate scores
+function scoreThrows(radii) {
+    var scores = 0;
+    for (const r of radii) {
+        if (r >= 5 && r <= 10) {
+            scores += 5;
+        }
+        else if (r < 5) {
+            scores += 10;
+        }
+    }
+    return radii.filter(p => p < 5).length === radii.length ? scores + 100 : scores;
+}
+///////////////////////////
+
+
+// Check for phonenumber
+function validPhoneNumber(phoneNumber) {
+    var reg = /^(\(\d{3}\)\s)(\d{3}-\d{4})$/;
+    return reg.test(phoneNumber);
+}
+///////////////////////////
