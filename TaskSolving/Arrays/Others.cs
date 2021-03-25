@@ -121,5 +121,20 @@ namespace TaskSolving.Arrays
         // Mean Square Error
         public static double Solution(int[] firstArray, int[] secondArray) =>
             firstArray.Select((p, index) => Math.Pow(p - secondArray[index], 2)).Average();
+
+
+        // N smallest elements in original order
+        public static int[] FirstNSmallest(int[] arr, int n)
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            for (int i = 0; i < n; i++)
+            {
+                int min = arr.Min();
+                int index = Array.IndexOf(arr, min);
+                dict.Add(index, min);
+                arr[index] = int.MaxValue;
+            }
+            return dict.OrderBy(p => p.Key).Select(p => p.Value).ToArray();
+        }
     }
 }

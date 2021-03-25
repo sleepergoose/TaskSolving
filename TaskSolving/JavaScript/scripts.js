@@ -223,7 +223,6 @@ function isValidIP(str) {
     }
     return true;
 }
-
 // return /^(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}$/.test(str);
 // const net = require('net');
 // const isValidIP = (s) => net.isIP(s);

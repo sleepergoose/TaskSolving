@@ -6,6 +6,10 @@ namespace TaskSolving
 {
     public static class Important
     {
+        // If number is pow of 2:
+        // (n & (n-1)) == 0
+
+
         public static void Summary()
         {
             char[] arr = "123".ToCharArray();

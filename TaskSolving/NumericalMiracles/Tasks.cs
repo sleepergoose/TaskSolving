@@ -141,5 +141,34 @@ namespace TaskSolving.NumericalMiracles
                 summe += i.ToString().Sum(CharUnicodeInfo.GetDigitValue);
             return summe;
         }
+
+
+
+        // x2 - 4y2 = n
+        // x = (a + b)/ 2  
+        // y = (b - a)/ 4
+        // x^2 - 4y^2 = n => ab = n
+        public static string solEquaStr(long n)
+        {
+            List<string> res = new List<string>();
+            for (int a = 1, lim = (int)Math.Sqrt(n) + 1; a < lim; a++)
+            {
+                long b, x, y;
+                if ((n % a) == 0)
+                {
+                    b = (long)(n / a);
+                    if ((b + a) % 2 == 0)
+                    {
+                        x = (b + a) / 2;
+                        if ((b - a) % 4 == 0)
+                        {
+                            y = (b - a) / 4;
+                            res.Add($"[{x}, {y}]");
+                        }
+                    }
+                }
+            }
+            return res.Count > 0 ? $"[{string.Join(", ", res)}]" : "[]";
+        }
     }
 }
