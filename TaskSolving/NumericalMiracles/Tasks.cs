@@ -170,5 +170,30 @@ namespace TaskSolving.NumericalMiracles
             }
             return res.Count > 0 ? $"[{string.Join(", ", res)}]" : "[]";
         }
+
+        public static int find_it(int[] seq) =>
+            seq.GroupBy(p => p).Where(m => m.Count() % 2 != 0).Select(k => k.Key).First();
+
+        // Sum of Digits / Digital Root
+        public static int DigitalRoot(long n)
+        {
+            if (n.ToString().Length == 1)
+                return (int)n;
+            int sum = n.ToString().Select(p => CharUnicodeInfo.GetDigitValue(p)).Sum();
+            return DigitalRoot(sum);
+        }
+
+        // Persistent Bugger
+        public static int Persistence(long n)
+        {
+            int counter = 0;
+            while (n > 9)
+            {
+                n = n.ToString().Select(p => CharUnicodeInfo.GetDigitValue(p)).Aggregate((x, y) => x * y);
+                counter++;
+            }
+            return counter;
+        }
+
     }
 }

@@ -444,5 +444,29 @@ namespace TaskSolving.String
             }
             return s.Count() == 0 ? true : false;
         }
+
+
+        // Replaces duplicate chars to ')', unique chars to '('
+        public static string DuplicateEncode(string word)
+        {
+            var dict = word.ToLower().GroupBy(p => p).ToDictionary(key => key.Key, value => value.Count() > 1 ? ")" : "(");
+            return string.Concat(word.ToLower().Select(p => dict[p]));
+        }
+
+        // Largest 5 digit number in a series
+        public static int GetNumber(string str)
+        {
+            string str1 = "585988826913520113758731278518956108784329076030743842274461930896731132833866514787410492432238827929850190930795725337634970";
+            int max = 0;
+            for (int i = 0, n = str1.Length; i < n - 5; i++)
+            {
+                int temp = int.Parse(str1.Substring(i, 5));
+                if (temp > max)
+                    max = temp;
+            }
+            return max;
+            return Enumerable.Range(0, str1.Length - 4).Select(i => int.Parse(str1.Substring(i, 5))).Max(p => p);
+        }
+
     }
 }

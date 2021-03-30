@@ -16,6 +16,7 @@ using System.Text;
 using System.Diagnostics;
 using TaskSolving.OOP;
 using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TaskSolving
 {
@@ -26,11 +27,59 @@ namespace TaskSolving
         static void Main(string[] args)
         {
             // xbonacci(new double[] { 2, 7, 19, 12, 5, 1, 18, 0, 4, 18 }, 27);
-            
+            //GenerateGroupings(new int[] { 0, 2, 3, 4, 5, 7, 8, 9, 11, 12, 14 });
+
+           
+            Write("");
         }
 
 
 
+        public static string GenerateGroupings(int[] input)
+        {
+            Array.Sort(input);
+            string res = input[0].ToString();
+            int last = input[0];
+
+            var ttt = input[1..].Where((p, index) => p - input[index] != 1);
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i] - input[i - 1] == 1)
+                {
+                    if (i == input.Length - 1)
+                        res += $"-{input[i]}";
+                }
+                else if(i == input.Length - 1 && input[i] - input[i - 1] == 1)
+                {
+                    res += $"-{input[i - 1]}";
+                }
+                else if(i == input.Length - 1 && input[i] - input[i - 1] != 1)
+                {
+                    res += $"-{input[i - 1]}, {input[i]}";
+                }
+                else
+                {
+                    res += $"-{input[i - 1]}, {input[i]}";
+                }
+            }
+
+            return null;
+        }
+
+        public class MyComparer : IEqualityComparer<int>
+        {
+
+            public bool Equals([AllowNull] int x, [AllowNull] int y)
+            {
+                return Math.Abs(y - x) == 1;
+            }
+
+            public int GetHashCode([DisallowNull] int obj)
+            {
+                return obj.GetHashCode();
+            }
+        }
 
 
         public static double[] xbonacci(double[] signature, int n)

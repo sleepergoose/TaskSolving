@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TaskSolving.Other
@@ -19,5 +20,9 @@ namespace TaskSolving.Other
             }
             return res;
         }
+
+
+        public static string StringifyDict<TKey, TValue>(Dictionary<TKey, TValue> hash) =>
+            string.Join(",", hash.Select(p => $"{p.Key} = {p.Value}"));
     }
 }

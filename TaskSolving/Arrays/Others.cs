@@ -136,5 +136,11 @@ namespace TaskSolving.Arrays
             }
             return dict.OrderBy(p => p.Key).Select(p => p.Value).ToArray();
         }
+
+        // Retrieve array value by index with default
+        public static int Solution(int[] items, int index, int defaultValue)
+        {
+            return Math.Abs(index) > items.Length ? defaultValue : index < 0 ? items[^(-1 * index)] : items[index];
+        }
     }
 }

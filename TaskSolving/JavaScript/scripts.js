@@ -314,3 +314,10 @@ function validPhoneNumber(phoneNumber) {
     return reg.test(phoneNumber);
 }
 ///////////////////////////
+
+
+//This function should return n!
+function factorial(n) {
+    return n < 0 ? null : n == 0 ? 1 : n * factorial(n - 1);
+}
+///////////////////////////
