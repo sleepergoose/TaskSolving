@@ -29,8 +29,25 @@ namespace TaskSolving
             // xbonacci(new double[] { 2, 7, 19, 12, 5, 1, 18, 0, 4, 18 }, 27);
             //GenerateGroupings(new int[] { 0, 2, 3, 4, 5, 7, 8, 9, 11, 12, 14 });
 
-           
+            //seven(times(five()));
             Write("");
+        }
+
+
+        public class Calc
+        {
+            public delegate int dfunc();
+            public delegate int op_func();
+            public int plus(dfunc dfunc)
+            {
+                
+                return 0;
+            }
+            //seven(times(five()));
+
+
+
+
         }
 
 

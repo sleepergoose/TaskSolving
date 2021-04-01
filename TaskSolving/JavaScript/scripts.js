@@ -321,3 +321,24 @@ function factorial(n) {
     return n < 0 ? null : n == 0 ? 1 : n * factorial(n - 1);
 }
 ///////////////////////////
+
+// Calculating with Functions
+var sub = (int, func) => func === undefined ? int : func(int);
+
+var zero = (func) => sub(0, func);
+var one = (func) => sub(1, func);
+var two = (func) => sub(2, func);
+var three = (func) => sub(3, func);
+var four = (func) => sub(4, func);
+var five = (func) => sub(5, func);
+var six = (func) => sub(6, func);
+var seven = (func) => sub(7, func);
+var eight = (func) => sub(8, func);
+var nine = (func) => sub(9, func);
+
+var plus = (right) => function (left) { return left + right; }
+var minus = (right) => function (left) { return left - right; }
+var times = (right) => function (left) { return left * right; }
+var dividedBy = (right) => function (left) { return Math.floor(left / right); }
+
+///////////////////////////
