@@ -195,5 +195,23 @@ namespace TaskSolving.NumericalMiracles
             return counter;
         }
 
+
+        // Go to the Cinema
+        public static int Movie(int card, int ticket, double perc)
+        {
+            double sysA = 0;
+            double sysB = card;
+            int times = 0;
+            double currentPrice = ticket;
+
+            while (sysA <= sysB)
+            {
+                times++;
+                sysA = ticket * times;
+                currentPrice *= perc;
+                sysB += currentPrice;
+            }
+            return times;
+        }
     }
 }

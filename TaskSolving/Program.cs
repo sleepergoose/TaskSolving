@@ -17,6 +17,8 @@ using System.Diagnostics;
 using TaskSolving.OOP;
 using System.Globalization;
 using System.Diagnostics.CodeAnalysis;
+using System.Collections;
+using System.IO;
 
 namespace TaskSolving
 {
@@ -26,31 +28,77 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-            // xbonacci(new double[] { 2, 7, 19, 12, 5, 1, 18, 0, 4, 18 }, 27);
-            //GenerateGroupings(new int[] { 0, 2, 3, 4, 5, 7, 8, 9, 11, 12, 14 });
+            //ValidateString(new[] { "code", "wars" }, "codewars");
+            //ValidateString(new[] { "wars", "code" }, "codewars");
+            // ValidateString(new[] { "code", "wars" }, "codecodewars");
+            // ValidateString(new[] { "code", "star", "wars" }, "starwars");
+            //ValidateString(new string[] { "ab", "a", "bc" }, "abc");
 
-            //seven(times(five()));
+            Write("Username123  " + validator("Username123"));
+            Write("Username  " + validator("Username"));
+            Write("123  " + validator("123"));    
+            Write("Username123!  " + validator("Username123!"));
+            Write("ThisPasswordIsTooLong1234  " + validator("ThisPasswordIsTooLong1234"));
             Write("");
         }
 
-
-        public class Calc
+        public static string validator(string password)
         {
-            public delegate int dfunc();
-            public delegate int op_func();
-            public int plus(dfunc dfunc)
-            {
-                
-                return 0;
-            }
-            //seven(times(five()));
-
-
-
-
+            if (Regex.IsMatch(password, @"(?=^.{3,20}$)(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\^\W])"))
+                return "VALID";
+            return "INVALID";
         }
 
 
+
+        public static BigInteger GetNthReverseNumber(long num)
+        {
+            if (num <= 9)
+                return num;
+            // 2 digit
+            else if (num > 9 & num < 19)
+            {
+                var dig = char.GetNumericValue(num.ToString()[1]) + 1;
+                return long.Parse($"{dig}{dig}");
+            }
+            // 3 digit
+            else if (num >= 19 & num < 109)
+            {
+                var digMiddle = (num + 1).ToString().Last();
+                var digMargin = int.Parse((num + 1).ToString()[..^1]) - 1;
+                return long.Parse($"{digMargin}{digMiddle}{digMargin}");
+            }
+            // 4 digit
+            else if (num >= 109 & num <= 999)
+            {
+                string dig = (num + 1).ToString();
+                return long.Parse($"{dig[1..]}{string.Concat(dig[1..].Reverse())}");
+            }
+            return -1;
+        }
+
+        public static bool ValidateString(string[] dictionary, string word)
+        {
+            var str1 = (string.Concat(dictionary).Distinct().OrderBy(p => p));
+            var str2 = (string.Concat(word).Distinct().OrderBy(p => p));
+
+            foreach (var item in str2)
+            {
+                if (str1.Contains(item) == false)
+                    return false;
+            }
+            return true;
+            int counter = dictionary.Length;
+            foreach (var item in dictionary)
+            {
+                var res = word.Split(item);
+                word = string.Concat(res);
+                if (counter == 0 || word == "")
+                    return true;
+                counter--;
+            }
+            return false;
+        }
 
         public static string GenerateGroupings(int[] input)
         {

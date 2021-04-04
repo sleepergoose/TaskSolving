@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TaskSolving.String
 {
@@ -467,6 +468,52 @@ namespace TaskSolving.String
             return max;
             return Enumerable.Range(0, str1.Length - 4).Select(i => int.Parse(str1.Substring(i, 5))).Max(p => p);
         }
+
+
+
+        /* ************* */
+        // Diagonal Strings
+        public static string[] DiagonalsOfSquare(string[] array)
+        {
+            if (array.Length == 0 || array == null || array.Length != array[0].Length || array.Any(p => p.Length != array.Length))
+                return null;
+
+            int len = array.Length;
+            string[] result = new string[len];
+            StringBuilder sb = new StringBuilder();
+            Dictionary<int, string> dict = new Dictionary<int, string>();
+
+            for (int i = 0; i < len; i++)
+                dict.Add(i, array[i]);
+            int[] indexes = dict.OrderBy(p => p.Value).Select(p => p.Key).ToArray<int>();
+            string str = string.Concat(dict.Values.OrderBy(p => p));
+
+            for (int i = 0; i < len; i++)
+            {
+                for (int j = 0; j < len; j++)
+                    sb.Append(str[(i * len + j * (len + 1)) % (str.Length)]);
+                result[indexes[i]] = sb.ToString();
+                sb.Clear();
+            }
+            return result;
+        }
+
+
+        public class comp : IComparer<string>
+        {
+            public int Compare([AllowNull] string x, [AllowNull] string y)
+            {
+                if (char.IsLetter(x[0]) && char.IsLetter(y[0]))
+                    return string.Compare(x, y);
+                else if (char.IsDigit(x[0]) && char.IsLetter(y[0]))
+                    return 1;
+                else if (char.IsLetter(x[0]) && char.IsDigit(y[0]))
+                    return -1;
+                else
+                    return string.Compare(x, y);
+            }
+        }
+        /* ************* */
 
     }
 }

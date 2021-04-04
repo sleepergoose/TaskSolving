@@ -35,5 +35,11 @@ namespace TaskSolving.RegexTasks
         }
 
 
+        // Strip Comments
+        public static string StripComments(string text, string[] commentSymbols)
+        {
+            Regex regex = new Regex(@$"\s*[{string.Join("", commentSymbols)}].*", RegexOptions.ECMAScript);
+            return regex.Replace(text, string.Empty);
+        }
     }
 }

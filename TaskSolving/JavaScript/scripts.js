@@ -342,3 +342,13 @@ var times = (right) => function (left) { return left * right; }
 var dividedBy = (right) => function (left) { return Math.floor(left / right); }
 
 ///////////////////////////
+
+
+// Strip Comments
+function solution(input, markers) {
+    const regex = new RegExp("\\s*[" + markers.join("") + "].*", "g");
+    return input.replace(regex, "");
+};
+///////////////////////////   \s*[#!].*
+
+
