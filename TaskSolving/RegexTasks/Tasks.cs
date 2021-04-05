@@ -41,5 +41,17 @@ namespace TaskSolving.RegexTasks
             Regex regex = new Regex(@$"\s*[{string.Join("", commentSymbols)}].*", RegexOptions.ECMAScript);
             return regex.Replace(text, string.Empty);
         }
+
+
+        // Validate my Password
+        public static string validator(string password)
+        {
+            var temp = Regex.Replace(password, @"[a-zA-Z0-9]", string.Empty);
+            if (Regex.Replace(password, @"[a-zA-Z0-9]", string.Empty).Length != 0)
+                return "INVALID";
+            if (Regex.IsMatch(password, @"(?=^(.){4,19}$)(?=.*[a-zA-Z])(?=.*[0-9])"))
+                return "VALID";
+            return "INVALID";
+        }
     }
 }

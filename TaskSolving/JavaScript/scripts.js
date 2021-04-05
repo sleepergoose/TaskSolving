@@ -349,6 +349,6 @@ function solution(input, markers) {
     const regex = new RegExp("\\s*[" + markers.join("") + "].*", "g");
     return input.replace(regex, "");
 };
-///////////////////////////   \s*[#!].*
+///////////////////////////   
 
-
+Array(5).fill(5).map((p, i) => p - i)
