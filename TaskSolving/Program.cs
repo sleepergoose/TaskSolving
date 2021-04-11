@@ -19,6 +19,7 @@ using System.Globalization;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections;
 using System.IO;
+using static TaskSolving.Delegates.Calc;
 
 namespace TaskSolving
 {
@@ -28,14 +29,30 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-            //ValidateString(new[] { "code", "wars" }, "codewars");
-            //ValidateString(new[] { "wars", "code" }, "codewars");
-            // ValidateString(new[] { "code", "wars" }, "codecodewars");
-            // ValidateString(new[] { "code", "star", "wars" }, "starwars");
-            //ValidateString(new string[] { "ab", "a", "bc" }, "abc");
-
+            
+            
             Write("");
         }
+
+        public static bool ValidateString(string[] dictionary, string word)
+        {
+            string str = word;
+            foreach (var item in dictionary)
+            {
+                Regex regex = new Regex(@$"{item}");
+                str = regex.Replace(str, string.Empty);
+                if (str == "")
+                {
+                    Console.WriteLine("true");
+                    return true;
+                }
+            }
+            
+            Console.WriteLine("false");
+            return false;
+        }
+
+
 
         public static List<string> GetPINs(string observed)
         {
@@ -93,28 +110,7 @@ namespace TaskSolving
             return -1;
         }
 
-        public static bool ValidateString(string[] dictionary, string word)
-        {
-            var str1 = (string.Concat(dictionary).Distinct().OrderBy(p => p));
-            var str2 = (string.Concat(word).Distinct().OrderBy(p => p));
-
-            foreach (var item in str2)
-            {
-                if (str1.Contains(item) == false)
-                    return false;
-            }
-            return true;
-            int counter = dictionary.Length;
-            foreach (var item in dictionary)
-            {
-                var res = word.Split(item);
-                word = string.Concat(res);
-                if (counter == 0 || word == "")
-                    return true;
-                counter--;
-            }
-            return false;
-        }
+       
 
         public static string GenerateGroupings(int[] input)
         {
