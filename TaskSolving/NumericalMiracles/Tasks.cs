@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -212,6 +213,26 @@ namespace TaskSolving.NumericalMiracles
                 sysB += currentPrice;
             }
             return times;
+        }
+
+        // PI approximation
+        public static ArrayList iterPi(double epsilon)
+        {
+            int precision = (int)(1 / epsilon);
+            int i = 1;
+            double temp = 1d;
+            double PI = 0;
+            while (Math.Abs(Math.PI - PI) > epsilon)
+            {
+                if ((i & 0b1) == 1)
+                    temp -= 1d / (2d * i + 1);
+                else
+                    temp += 1d / (2d * i + 1);
+                PI = temp * 4d;
+                i++;
+            }
+
+            return new ArrayList() { i, double.Parse(PI.ToString("F10")) };
         }
     }
 }

@@ -29,10 +29,11 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-            
-            
+
             Write("");
         }
+
+
 
         public static bool ValidateString(string[] dictionary, string word)
         {

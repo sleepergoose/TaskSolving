@@ -515,5 +515,34 @@ namespace TaskSolving.String
         }
         /* ************* */
 
+        // Build Tower
+        public static string[] TowerBuilder(int nFloors)
+        {
+            string[] res = new string[nFloors];
+            int max = 2 * (nFloors - 1) + 1;
+            for (int i = 0; i < nFloors; i++)
+            {
+                int num = 2 * i + 1;
+                res[i] = string.Concat(Enumerable.Range(1, num).Select(p => "*"))
+                               .PadLeft((max + num) / 2, ' ').PadRight(max, ' ');
+            }
+            return res;
+        }
+
+
+        // String brackers
+        public static string StringBreakers(int n, string str)
+        {
+            Regex regex = new Regex(@"\s*");
+            string temp = regex.Replace(str, "");
+            int len = temp.Length;
+            int sub = (int)Math.Floor((double)len / n);
+            List<string> result = Enumerable.Range(0, sub).Select(p => temp.Substring(p * n, n)).ToList();
+            if (sub * n < len)
+                result.Add(temp.Substring(sub * n, len - sub * n));
+            return string.Join("\n", result);
+        }
+
     }
 }
+
