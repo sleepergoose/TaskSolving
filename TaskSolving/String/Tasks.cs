@@ -543,6 +543,36 @@ namespace TaskSolving.String
             return string.Join("\n", result);
         }
 
+        // Black Or White Sqare on the Cheese Board
+        public static bool ChessBoardCellColor(string cell1, string cell2) => (cell1 + cell2).Sum(ch => ch) % 2 == 0;
+
+        // Histogram - V1
+        //Console.WriteLine(Histogram(new int[] { 10, 6, 5, 4, 12, 13 }));
+        //Console.WriteLine(Histogram(new int[] { 7, 3, 10, 1, 0, 5 }));
+        //var res = Histogram(new int[] { 0, 0, 0, 0, 0, 0 });
+        // Console.WriteLine(Histogram(new int[] { 0,0,0,0,0,0 }));     
+        public static string Histogram(int[] results)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = results.Max(); i >= 0; i--)
+            {
+                string b = i == 0 ? "  " : i >= 10 ? i.ToString() : i.ToString("# ");
+                string temp =
+                    $"{(i - results[0] == 0 ? b : i - results[0] > 0 ? "  " : "# ")}" +
+                    $"{(i - results[1] == 0 ? b : i - results[1] > 0 ? "  " : "# ")}" +
+                    $"{(i - results[2] == 0 ? b : i - results[2] > 0 ? "  " : "# ")}" +
+                    $"{(i - results[3] == 0 ? b : i - results[3] > 0 ? "  " : "# ")}" +
+                    $"{(i - results[4] == 0 ? b : i - results[4] > 0 ? "  " : "# ")}" +
+                    $"{(i - results[5] == 0 ? b : i - results[5] > 0 ? " " : "#")}";
+                if (temp.TrimEnd().Length != 0)
+                    sb.AppendLine(temp.TrimEnd());
+            }
+            sb.AppendLine("-----------");
+            sb.AppendLine("1 2 3 4 5 6");
+
+            return sb.ToString();
+        }
+
     }
 }
 

@@ -20,6 +20,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Collections;
 using System.IO;
 using static TaskSolving.Delegates.Calc;
+using System.Threading.Tasks;
 
 namespace TaskSolving
 {
@@ -29,8 +30,7 @@ namespace TaskSolving
 
         static void Main(string[] args)
         {
-
-            Write("");
+             Write("");
         }
 
 
@@ -181,7 +181,32 @@ namespace TaskSolving
 
 
 
+        static int Sum(int[] numbers, int min, int max)
+        {
+            var sums = new List<(int, int)>();
+            Hashtable ht = new Hashtable();
 
+            // check each element in array
+            for (int j = min; j < max; j++)
+            {
+                for (var i = 0; i < numbers.Length; i++)
+                {
+                    // calculate S - current element
+                    var dif = j - numbers[i];
+                    // check if this number exists in hash table
+                    // if so then we found a pair of numbers that sum to S
+                    if (ht[dif.ToString()] != null)
+                    {
+                        sums.Add((numbers[i], dif));
+                    }
+                    // add the current number to the hash table
+                    ht[numbers[i].ToString()] = numbers[i];
+                }
+            }
+
+            // return all pairs of integers that sum to S
+            return sums.Sum(p => p.Item1 + p.Item2);
+        }
 
 
 
@@ -191,26 +216,37 @@ namespace TaskSolving
 
         public static long SumOfTwoSumTargets(int[] numbers, int min, int max)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            int sum = 0;
-            for (int i = min; i < max; i++)
-            {
-                for (int j = 0, lim = numbers.Length; j < lim; j++)
+                HashSet<int> set = numbers.ToHashSet();
+                Hashtable ht = new Hashtable(numbers.ToDictionary(i => i));
+                int sum = 0;
+                Parallel.For(min, max, (i) =>
                 {
-                    int dif = i - numbers[j];
-                    if (numbers.Contains(dif) == true && dif != numbers[j])
+                    for (int j = 0, lim = numbers.Length; j < lim; j++)
                     {
-                        sum += i;
-                        break;
+                        int dif = (int)i - numbers[j];
+                        if (ht.Contains(dif) == true && dif != numbers[j])
+                        {
+                            sum += i;
+                            break;
+                        }
                     }
-                }
-            }
-            //return sum;
-            stopwatch.Stop();
-            Console.WriteLine("time: " + stopwatch.ElapsedMilliseconds);
-            Console.WriteLine("sum: " + sum);
-            return sum;
+                });
+                return sum;
+
+            //int sum = 0;
+            //    for (int i = min; i < max; i++)
+            //    {
+            //        for (int j = 0, lim = numbers.Length; j < lim; j++)
+            //        {
+            //            int dif = (int)i - numbers[j];
+            //            if (ht.Contains(dif) == true && dif != numbers[j])
+            //            {
+            //                sum += (int)i;
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    return sum;
         }
     }
 }
